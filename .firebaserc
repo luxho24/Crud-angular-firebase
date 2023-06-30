@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "crud-topico-firebase-angular": {
+      "hosting": {
+        "firebase-angular-crud": [
+          "crud-topico-firebase-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "crud-topico-firebase-angular"
+  }
+}

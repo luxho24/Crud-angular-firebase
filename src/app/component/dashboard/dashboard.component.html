@@ -1,0 +1,60 @@
+g<div class="container-fluid">
+    <h1 class="text-center fw-bold mt-5">HORARIO DE REGISTRO VEHICULAR</h1>
+    <div class="row mt-5">
+        <div class="col-md-4 mt-5">
+            <div class="card border-0 shadow p-3">
+                <div class="form-floating mb-3 tetx-center">
+                    <h5 class="text-center text-warning">Agregar Vehiculo</h5>
+                </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="categoria">
+                        <label for="categoria">Categoria</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="placa" name="placa" [(ngModel)]="placa">
+                        <label for="placa">Placa</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="propietario" name="propietario" [(ngModel)]="propietario">
+                        <label for="propietario">Propietario</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="time" class="form-control" id="hora" name="hora" [(ngModel)]="hora">
+                        <label for="hora">Hora</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-success" (click)="agregarVehiculo()">Agregar Vehiculo</button>
+            </div>
+        </div>
+        <div class="col-md-8 mt-2">
+            <h5 class="text-danger"> Lista de Vehiculos</h5>
+            <div class="card p-3 shadow">
+                <div class="card-body">
+                    <table class="table table-hover" *ngIf="vehiculosList.length > 0">
+                        <thead>
+                          <tr>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Propietario</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let vehiculo of vehiculosList">
+                            <td>{{vehiculo.categoria}}</td>
+                            <td>{{vehiculo.placa}}</td>
+                            <td>{{vehiculo.propietario}}</td>
+                            <td>{{vehiculo.hora}}</td>
+                            <td>
+                                <button class="btn btn-outline-danger" (click)="eliminarVehiculo(vehiculo)">Eliminar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="vehiculosList.length == 0">No hay registros para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
