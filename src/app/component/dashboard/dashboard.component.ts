@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Vehiculo } from 'src/app/model/vehiculo';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -132,10 +133,52 @@ export class DashboardComponent implements OnInit {
   }
 
   eliminarVehiculo(vehiculo: Vehiculo) {
-    if (window.confirm('Are you sure you want to delete ' + vehiculo.categoria + ' ' + vehiculo.placa + ' ?')) {
-      this.data.eliminarVehiculo(vehiculo);
-    }
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: `¿Está seguro que desea borrar el registro con placa: "${vehiculo.placa}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'Cancelar'
+    })
+    // if (window.confirm('Are you sure you want to delete ' + vehiculo.categoria + ' ' + vehiculo.placa + ' ?')) {
+    //   this.data.eliminarVehiculo(vehiculo);
+    // }
+
+    .then((result) => {
+      if (result.isConfirmed) {
+        // if (window.confirm('Are you sure you want to delete ' + vehiculo.categoria + ' ' + vehiculo.placa + ' ?')) {
+          this.data.eliminarVehiculo(vehiculo);
+        // }
+      } else {
+        return;
+      }
+    })
   }
+
+
+  /**
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: `¿Está seguro que desea borrar el prodcuto "${nombre}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'Cancelar'
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        this._productoService.eliminarProducto(id).subscribe(data => {
+          this.toastr.error('El producto fue eliminado con éxito', 'Producto Eliminado');
+          this.obtenerProductos();
+        }, error => {
+          console.log(error);
+        })
+      } else {
+        return;
+      }
+    })
+   */
 
   filterVehiculo = '';
 
