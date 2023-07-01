@@ -112,8 +112,17 @@ export class DashboardComponent implements OnInit {
   }
 
   agregarVehiculo() {
+    // if (this.categoria == '' || this.placa == '' || this.propietario == '' || this.hora == '') {
+    //   alert('Fill all input fields');
+    //   return;
+    // }
+
     if (this.categoria == '' || this.placa == '' || this.propietario == '' || this.hora == '') {
-      alert('Fill all input fields');
+      Swal.fire({
+        title: 'Campos vacios',
+        text: 'Debe llenar todos los campos',
+        icon: 'info',
+      })
       return;
     }
 
