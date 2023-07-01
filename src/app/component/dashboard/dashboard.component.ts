@@ -137,4 +137,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  filterVehiculo = '';
+
 }

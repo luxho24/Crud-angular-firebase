@@ -11,7 +11,7 @@ g<div class="container-fluid">
                         <label for="categoria">Categoria</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="placa" name="placa" [(ngModel)]="placa">
+                        <input type="text" class="form-control text-uppercase" id="placa" name="placa" [(ngModel)]="placa">
                         <label for="placa">Placa</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -29,6 +29,12 @@ g<div class="container-fluid">
             <h5 class="text-danger"> Lista de Vehiculos</h5>
             <div class="card p-3 shadow">
                 <div class="card-body">
+                    <!-- Filtrado -->
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Buscar..." name="filterVehiculo" [(ngModel)]="filterVehiculo">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <!-- Filtrado -->
                     <table class="table table-hover" *ngIf="vehiculosList.length > 0">
                         <thead>
                           <tr>
@@ -40,7 +46,7 @@ g<div class="container-fluid">
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let vehiculo of vehiculosList">
+                          <tr *ngFor="let vehiculo of vehiculosList | filter: filterVehiculo">
                             <td>{{vehiculo.categoria}}</td>
                             <td>{{vehiculo.placa}}</td>
                             <td>{{vehiculo.propietario}}</td>
